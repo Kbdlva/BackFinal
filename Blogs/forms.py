@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post, Comment
+from .models import Post, Comment, Category
 
 
 class RegisterForm(UserCreationForm):
@@ -12,10 +12,21 @@ class RegisterForm(UserCreationForm):
         fields = ["username", "first_name", "last_name", "email", "password1", "password2"]
 
 
+choices = Category.objects.all().values_list('name','name')
+
+choice_list = [('', '' ), ('sport','sport'),('news','news'),('entertainment', 'entertainment' )]
+
+for item in choices:
+    choice_list.append(item)
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title", "description"]
+        fields = ["title", "category", "description"]
+
+        widgets = {
+            'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'})
+        }
 
 
 

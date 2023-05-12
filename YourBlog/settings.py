@@ -92,7 +92,7 @@ DATABASES = {
         'default': {
             'ENGINE': 'djongo',
             'NAME': 'final',
-            'ENFORCE_SCHEMA': False,
+            'ENFORCE_SCHEMA': True,
             'CLIENT': {
                 'host': 'mongodb+srv://admin:backendFinal@cluster0.c3lagl5.mongodb.net/test'
             }
@@ -144,11 +144,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'YourBlog/static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'YourBlog/static')]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/media/'
 
 
 LOGIN_REDIRECT_URL = '/home'
