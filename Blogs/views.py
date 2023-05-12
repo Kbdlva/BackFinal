@@ -20,7 +20,6 @@ def home(request):
     return render(request, 'Blogs/home.html', {"posts": posts})
 
 def create_post(request):
-    post = get_object_or_404(Post)
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -30,17 +29,17 @@ def create_post(request):
             return redirect("/home")
     else:
         form = PostForm()
-    liked = False
-    if request.user.is_authenticated:
-        liked = Like.objects.filter(user=request.user, post=post).exists()
-    if request.method == 'POST' and 'like' in request.POST:
-        if not liked:
-            Like.objects.create(user=request.user, post=post)
-
-        else:
-            Like.objects.filter(user=request.user, post=post).delete()
-
-        return redirect('home')
+    # liked = False
+    # if request.user.is_authenticated:
+    #     liked = Like.objects.filter(user=request.user, post=post).exists()
+    # if request.method == 'POST' and 'like' in request.POST:
+    #     if not liked:
+    #         Like.objects.create(user=request.user, post=post)
+    #
+    #     else:
+    #         Like.objects.filter(user=request.user, post=post).delete()
+    #
+    #     return redirect('home')
 
 
     return render(request, 'Blogs/create_post.html', {"form": form})

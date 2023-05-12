@@ -81,24 +81,24 @@ WSGI_APPLICATION = 'YourBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'final',
-            'ENFORCE_SCHEMA': True,
-            'CLIENT': {
-                'host': 'mongodb+srv://admin:backendFinal@cluster0.c3lagl5.mongodb.net/test'
-            }
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'NAME': 'final',
+#             'ENFORCE_SCHEMA': True,
+#             'CLIENT': {
+#                 'host': 'mongodb+srv://admin:backendFinal@cluster0.c3lagl5.mongodb.net/test'
+#             }
+#         }
+# }
+#
 
 
 # Password validation

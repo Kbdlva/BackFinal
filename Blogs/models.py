@@ -39,13 +39,14 @@ class SavedPost(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-    def get_absolute_url(self):
-        return reversed('home')
+# class Category(models.Model):
+#     name = models.CharField(max_length=255)
+#
+#     def __str__(self):
+#         return self.name
+#     def get_absolute_url(self):
+#         return reversed('home')
+#
 class Tag(models.Model):
     name = models.CharField(max_length=200)
     post = models.ManyToManyField(Post, related_name='posts')
