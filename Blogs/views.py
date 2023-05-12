@@ -10,14 +10,16 @@ from .models import Post, Comment, Like
 @login_required(login_url="/login")
 def home(request):
     posts = Post.objects.all()
+    comments = Comment.objects.all()
     if request.method == "POST":
         post_id = request.POST.get("post-id")
 
         if post_id:
             post = Post.objects.filter(id=post_id).first()
+            comments = Comment.objects.filter(id=post_id)
             if post and (post.author == request.user):
                 post.delete()
-    return render(request, 'Blogs/home.html', {"posts": posts})
+    return render(request, 'Blogs/home.html', {"posts": posts, "comments": comments },)
 
 def create_post(request):
     if request.method == 'POST':
@@ -87,30 +89,12 @@ def sign_up(request):
 def profileView(request):
     return render(request, 'Blogs/profile.html')
 
+def get_context_data(self):
+        context = super().get_context_data()
+        post_comments_count = Comment.objects.filter(post=self.object.id).count()
+        post_comments = Comment.objects.filter(post=self.object.id)
+        context['form'] = self.form
+        context['post_comments'] = post_comments
+        context['post_comments_count'] = post_comments_count
 
-# def post_detail_view(request, slug):
-#     post = get_object_or_404(Post, slug=slug)
-#
-#     # Handle comment submission
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             form.instance.user = request.user
-#             form.instance.post = post
-#             form.save()
-#             return redirect(reverse("post", kwargs={'slug': post.slug}))
-#
-#     # Retrieve similar posts and comments for the post
-#     similar_posts = post.tags.similar_objects()[:3]
-#     post_comments_count = Comment.objects.filter(post=post.id).count()
-#     post_comments = Comment.objects.filter(post=post.id)
-#
-#     # Render the post detail page with relevant context data
-#     context = {
-#         'object': post,
-#         'similar_posts': similar_posts,
-#         'form': CommentForm(),
-#         'post_comments': post_comments,
-#         'post_comments_count': post_comments_count,
-#     }
-#     return render(request, "Blogs/base.html", context=context)
+        return context
