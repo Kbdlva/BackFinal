@@ -1,25 +1,55 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from .forms import RegisterForm, PostForm, CommentForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
-from .models import Post, Comment, Like
+from .models import Post, Comment
 # Create your views here.
 
 @login_required(login_url="/login")
 def home(request):
     posts = Post.objects.all()
-    comments = Comment.objects.all()
     if request.method == "POST":
         post_id = request.POST.get("post-id")
 
         if post_id:
             post = Post.objects.filter(id=post_id).first()
-            comments = Comment.objects.filter(id=post_id)
             if post and (post.author == request.user):
                 post.delete()
-    return render(request, 'Blogs/home.html', {"posts": posts, "comments": comments },)
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+    return render(request, 'Blogs/home.html', {"posts": posts },)
+
+def post_details(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = post.comment_set.all()
+    is_saved = False
+    if request.user.saveds.filter(post_id=pk).exists():
+        print(request.user.saveds.all())
+        is_saved =True
+
+    context = {
+        'post': post,
+        'is_saved': is_saved,
+        'comments': comments
+    }
+    return render(request, 'Blogs/post.html', {'post': post, 'comments': comments})
+
+def saved_posts_list(request):
+    user = request.user
+    print(vars(user))
+    saved_posts = user.saveds.all()
+
+    context = {
+        "saved_posts": saved_posts
+    }
+    return render(request, 'Blogs/savedPosts.html', context)
+
 
 def create_post(request):
     if request.method == 'POST':
@@ -98,3 +128,15 @@ def get_context_data(self):
         context['post_comments_count'] = post_comments_count
 
         return context
+
+def savePost(request):
+    user = request.user
+    if request.method == 'POST':
+        if request.POST.get('type') == "0":
+            user.saveds.delete(request.POST.get('pk'))
+        else:
+            user.saveds.add(request.POST.get('pk'))
+    return redirect('/home')
+
+
+
