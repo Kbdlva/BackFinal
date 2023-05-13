@@ -29,9 +29,14 @@ class PostForm(forms.ModelForm):
         # }
 
 
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ["text"]
+
+        # fields = ["text"]
+        #
+        # widgets = {
+        #     'text': forms.Textarea(attrs={'class': 'form-control'})
+        # }
 

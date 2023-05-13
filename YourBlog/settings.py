@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Blogs',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -142,11 +143,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+#
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'media')]
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'YourBlog/static')]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 

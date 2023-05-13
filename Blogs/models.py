@@ -1,16 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 
 class UserProfile(models.Model):
-    image = models.ImageField(null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='profile.png', upload_to='images')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='myprofile')
 
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = RichTextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='profile_images', default='YourBlog/static/images/profile.png', null=True)

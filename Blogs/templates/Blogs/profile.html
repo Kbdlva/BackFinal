@@ -1,13 +1,21 @@
 {% extends "Blogs/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="img here">
+<div class="content-section">
+    <div class="media">
+        {% if not user.myprofile.image %}
+
+        <img src="http://127.0.0.1:8000{{ user.myprofile.image.url }}" alt="User Profile Image">
+{% else %}
+        <img class="rounded-circle account-img" src="http://127.0.0.1:8000/media/images/profile.png" alt="img here">
+
+
+        {% endif %}
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
+            <h2 class="account-heading">@{{ user.username }}</h2>
         </div>
-      </div>
-      <!-- FORM HERE -->
     </div>
+    <!-- FORM HERE -->
+</div>
 {% endblock content %}

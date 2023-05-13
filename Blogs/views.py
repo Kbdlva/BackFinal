@@ -5,7 +5,8 @@ from django.urls import reverse
 from .forms import RegisterForm, PostForm, CommentForm
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
-from .models import Post, Comment
+from .models import Post, Comment, UserProfile
+import os
 # Create your views here.
 
 @login_required(login_url="/login")
@@ -29,7 +30,7 @@ def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comment_set.all()
     is_saved = False
-    if request.user.saveds.filter(post_id=pk).exists():
+    if request.user.saveds.filter(pk=pk).exists():
         print(request.user.saveds.all())
         is_saved =True
 
@@ -81,6 +82,10 @@ def leave_comment(request, post_pk, comment_pk=None):
 
     if comment_pk is not None:
         comment = get_object_or_404(Comment, post_id=post_pk, pk=comment_pk)
+
+        # def form_valid(self, form):
+        #     form.instance.post_id = self.kwargs['pk']
+        #     return super().form_valid(form)
     else:
         comment = None
     if request.method == 'POST':
@@ -88,7 +93,8 @@ def leave_comment(request, post_pk, comment_pk=None):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.author = request.user
+            comment.post = post
+            comment.user = request.user
             comment.save()
             return redirect("/home")
     else:
@@ -103,12 +109,19 @@ def leave_comment(request, post_pk, comment_pk=None):
                    })
 
 
+def get_image_path(relative_path):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(file)))
+    return os.path.join(base_dir, relative_path)
+
+
 
 def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            profile = UserProfile(user=user)
+            profile.save()
             login(request, user)
             return redirect('/home')
     else:
@@ -117,6 +130,7 @@ def sign_up(request):
     return render(request, 'registration/sign_up.html', {"form": form})
 
 def profileView(request):
+    print(request.user.myprofile.image.url)
     return render(request, 'Blogs/profile.html')
 
 def get_context_data(self):
@@ -133,10 +147,15 @@ def savePost(request):
     user = request.user
     if request.method == 'POST':
         if request.POST.get('type') == "0":
-            user.saveds.delete(request.POST.get('pk'))
+            post = user.saveds.get(pk=request.POST.get('pk'))
+            user.saveds.remove(post)
         else:
             user.saveds.add(request.POST.get('pk'))
     return redirect('/home')
+
+# post_id in comment
+#remove choice for post in comments
+
 
 
 

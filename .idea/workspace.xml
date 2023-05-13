@@ -5,22 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2345f5a-41f5-4ae8-a3a1-2b4547876ef3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/post.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/savedPosts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BackFinal.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/create_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/create_post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/YourBlog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/YourBlog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YourBlog/static/images/profile.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/profile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +60,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kabdy\backend\YourBlog\static\images" />
+      <recent name="C:\Users\kabdy\backend\YourBlog\media" />
       <recent name="C:\Users\kabdy\backend\YourBlog\YourBlog\static" />
       <recent name="C:\Users\kabdy\backend\YourBlog\YourBlog" />
       <recent name="C:\Users\kabdy\backend\YourBlog\Blogs\static\Blogs\images" />
