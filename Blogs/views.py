@@ -235,7 +235,13 @@ def room(request, room):
     room_value = Room.objects.get(pk=room)
     if request.user not in room_value.user.all():
         return redirect("/home")
-    return render(request, 'chat/room.html', {'room': room_value})
+    user = request.user
+    friend = user
+    for x in room_value.user.all():
+        if x.pk != user.pk:
+            friend = x
+            break
+    return render(request, 'Blogs/messages.html', {'room': room_value, 'friend': friend})
 
 
 def checkview(request):
@@ -250,7 +256,7 @@ def checkview(request):
     new_room.user.add(request.user.pk)
     new_room.user.add(friend.pk)
     new_room.save()
-    return redirect('/chat/' + str(room.pk))
+    return redirect('/chat/' + str(new_room.pk))
 
 
 def send(request):
