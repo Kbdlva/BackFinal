@@ -212,18 +212,18 @@
 <input type="submit" id="button${response.users[key].username}" style="display: none">
 </form>
                 <div class="chat-list">
-                    <img style="width: 100px" src="http://127.0.0.1:8000/media${response.users[key].image.substring(6) }">
+                    <img class="chat-ava" src="http://127.0.0.1:8000/media${response.users[key].image.substring(6) }">
                     <div class="message-cont">
                         <div class="name-acc">
                             <p class="info"
                                style="font-family: 'Inter';font-style: normal;font-weight: 600;font-size: 16px;line-height: 20px;color: #011627;margin: 0">
-                                ${response.users[key].username} <img src="verified%20bot.png"></p>
+                                ${response.users[key].username} <img src="{% static 'Blogs/verified bot.png' %}"></p>
                             <p style="font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 14px;line-height: 18px;color: #707991;margin: 0">
                                 <time datetime="19:48">19:48</time>
                             </p>
                         </div>
                         <p style="font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 14px;line-height: 18px;color: #707991;margin: 0">
-                            Chatgram Web was update<img src="new%20message.png"></p>
+                            Chatgram Web was update<img src="{% static 'Blogs/new%20message.png'%}"></p>
                     </div>
                 </div>
             </div>`
@@ -240,11 +240,11 @@
 <div class="right-hand">
         <div class="user-acc">
             <div class="profile">
-                <img src="ava.png">
+                <img class="chat-ava" src="http://127.0.0.1:8000/media/images{{ request.user.myprofile.image.url|slice:"6:" }}">
                 <div class="nick-acc">
                     <p style="font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 14px;line-height: 21px;color: #436475; margin: 0">
-                        Kew Coder</p>
-                    <p style="font-size: 10px;font-weight: 400;margin: 0">@kewcoder</p>
+                        {{ user.first_name }} {{ user.last_name }}</p>
+                    <p style="font-size: 10px;font-weight: 400;margin: 0">@{{ user.username }}</p>
                 </div>
             </div>
             <div class="user-settings">
