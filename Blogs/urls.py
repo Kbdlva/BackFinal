@@ -21,7 +21,7 @@ urlpatterns = [
     path('send', views.send, name='send'),
     path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
     # path('get_tags/<int:post_pk>/', views.get_tags, name='get_tags'),
-    path('tags/<str:tag>/', views.get_posts_by_tag, name='tags'),
+    path('tags/<str:tag_name>/', views.posts_by_tag, name='tags'),
     path('messages', views.messages, name='messages'),
     path('all_users', views.all_users, name='all_users'),
 ]

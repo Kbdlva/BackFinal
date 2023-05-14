@@ -4,6 +4,9 @@
 
 {% block content %}
     <div>
+        <script>
+
+        </script>
         <div class="search">
             <div class="search-ic">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,8 +14,14 @@
                           stroke="#436475" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-
-            <input type="text" id="search-input" placeholder="Search">
+            <form method="post" id="my-form">
+                {% csrf_token %}
+                {% if tag_name %}
+                    <input type="text" disabled value="{{ tag_name }}" name="words" id="search-input" placeholder="Search">
+                {% else %}
+                    <input type="text" name="words" id="search-input" placeholder="Search">
+                {% endif %}
+            </form>
         </div>
         <style>
             .search {
@@ -24,8 +33,7 @@
             {#margin-right: 10px;#} padding: 10px 30px;
                 border-radius: 30px;
                 background: rgba(42, 163, 239, 0.04);
-            {#margin-left: 60px;#}
-                width: 600px;
+            {#margin-left: 60px;#} width: 600px;
             }
 
             #search-input {
@@ -35,7 +43,8 @@
                 border-radius: 30px;
                 width: 85%;
             }
-            #search-input:focus{
+
+            #search-input:focus {
                 outline: none;
                 border: none;
             }
@@ -43,6 +52,7 @@
             .search-ic {
                 margin-left: 10px;
             }
+
             .right-root {
                 display: flex;
                 flex-direction: column;
@@ -234,86 +244,80 @@
 {% endblock %}
 {% block right %}
     <div class="right-root">
-    <div class="trending">
-        <div class="trending-cont">
-            <div class="top-header">
-                <p style="font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 16px;line-height: 24px;color: #4FD8E0;margin: 0">
-                    Trending &nbsp;&nbsp;&nbsp;
-                    <svg width="20" height="12" viewBox="0 0 20 12" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 1L11 9L7 5L1 11M11 1H19H11ZM19 1V9V1Z" stroke="#4FD8E0" stroke-width="2"
-                              stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </p>
-                <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 12px;line-height: 15px;color: #4FD8E0;margin: 0">
-                    Today</p>
-            </div>
-            <div class="menu-trending">
-                <div class="menu-tags">
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 12px;line-height: 18px;color: #436475;;margin: 0">
-                        1. #TwetGram &nbsp;&nbsp;&nbsp;
-
+        <div class="trending">
+            <div class="trending-cont">
+                <div class="top-header">
+                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 700;font-size: 16px;line-height: 24px;color: #4FD8E0;margin: 0">
+                        Trending &nbsp;&nbsp;&nbsp;
+                        <svg width="20" height="12" viewBox="0 0 20 12" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 1L11 9L7 5L1 11M11 1H19H11ZM19 1V9V1Z" stroke="#4FD8E0" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </p>
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 10px;line-height: 15px;color: #436475;margin: 0">
-                        1000 tweet</p>
+                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 12px;line-height: 15px;color: #4FD8E0;margin: 0">
+                        Today</p>
                 </div>
-                <div class="menu-tags">
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 12px;line-height: 18px;color: #436475;;margin: 0">
-                        2. #TwetGram &nbsp;&nbsp;&nbsp;
+                <div class="menu-trending">
+                    {% if tags %}
+                        {% for tag in tags %}
+                            <a href="{% url 'tags' tag_name=tag.name|slice:"1:"%}">
+                            <div class="menu-tags">
+                        <p style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 12px;line-height: 18px;color: #436475;;margin: 0">
+                            {{ forloop.counter }}. {{ tag.name }} &nbsp;&nbsp;&nbsp;
 
-                    </p>
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 10px;line-height: 15px;color: #436475;margin: 0">
-                        1000 tweet</p>
+                        </p>
+                        <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 10px;line-height: 15px;color: #436475;margin: 0">
+                            {{ tag.amount }} tweet</p>
+                    </div>
+                            </a>
+                            {% empty %}
+                            <p>No tags yet:(</p>
+                        {% endfor %}
+                        {% else %}
+                        <p>No tags yet:(</p>
+                    {% endif %}
+
                 </div>
-                <div class="menu-tags">
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 12px;line-height: 18px;color: #436475;;margin: 0">
-                        3. #TwetGram &nbsp;&nbsp;&nbsp;
-
-                    </p>
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 10px;line-height: 15px;color: #436475;margin: 0">
-                        1000 tweet</p>
-                </div>
-                <div class="menu-tags">
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 600;font-size: 12px;line-height: 18px;color: #436475;;margin: 0">
-                        4. #TwetGram &nbsp;&nbsp;&nbsp;
-
-                    </p>
-                    <p style="font-family: 'Poppins';font-style: normal;font-weight: 400;font-size: 10px;line-height: 15px;color: #436475;margin: 0">
-                        1000 tweet</p>
-                </div>
-
             </div>
         </div>
-        </div>
-        </div>
-<style>
-.trending-cont{
-    display: flex;
-    flex-direction: column;
-    padding: 20px 50px;
-    gap: 60px;
-}
-.top-header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    /*align-items: center;*/
-    justify-content: space-around;
-    gap: 60px;
-}
-.menu-trending{
-    display: flex;
-    flex-direction: column;
-    /*justify-content: space-around;*/
-    gap: 17px;
-}
-.menu-tags{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    gap: 60px;
-    white-space: nowrap;
-}
-</style>
+    </div>
+    <style>
+        .trending-cont {
+            display: flex;
+            flex-direction: column;
+            padding: 20px 50px;
+            gap: 60px;
+        }
+
+        .top-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .top-header > p {
+            white-space: nowrap;
+        }
+
+        .menu-trending {
+            display: flex;
+            flex-direction: column;
+            /*justify-content: space-around;*/
+            gap: 17px;
+            max-height: 700px;
+            padding: 0 15px;
+            overflow-y: scroll;
+        }
+
+        .menu-tags {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            white-space: nowrap;
+        }
+    </style>
 {% endblock %}

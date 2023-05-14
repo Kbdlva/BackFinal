@@ -14,14 +14,25 @@ import os
 
 @login_required(login_url="/login")
 def home(request):
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
     posts = Post.objects.all()
     if request.method == "POST":
-        post_id = request.POST.get("post-id")
-
-        if post_id:
-            post = Post.objects.filter(id=post_id).first()
-            if post and (post.author == request.user):
-                post.delete()
+        words = request.POST.get('words').split()
+        if len(words) > 0:
+            posts = set()
+            for word in words:
+                word = word.lower()
+                for post in Post.objects.filter(description__icontains=word):
+                    posts.add(post)
+                for post in Post.objects.all():
+                    if word in post.author.first_name.lower() or word in post.author.last_name.lower() or word in post.author.username.lower():
+                        posts.add(post)
 
     for post in posts:
         if request.user.saveds.filter(pk=post.pk).exists():
@@ -32,7 +43,33 @@ def home(request):
             post.is_liked = True
         else:
             post.is_liked = False
-    return render(request, 'Blogs/home.html', {"posts": posts}, )
+    return render(request, 'Blogs/home.html', {"posts": posts, "tags": tags_value}, )
+
+
+def posts_by_tag(request, tag_name):
+    try:
+        tag = Tag.objects.get(name='#'+str(tag_name))
+    except Tag.DoesNotExist:
+        return redirect('home')
+    posts = tag.post.all()
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+
+    return render(request, 'Blogs/home.html', {"posts": posts, "tags": tags_value, "tag_name": tag_name}, )
 
 def default_view(request):
     return redirect('home')
@@ -59,7 +96,25 @@ def post_details(request, pk):
 
 def saved_posts_list(request):
     user = request.user
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
     posts = user.saveds.all()
+    if request.method == "POST":
+        words = request.POST.get('words').split()
+        if len(words) > 0:
+            posts = set()
+            for word in words:
+                word = word.lower()
+                for post in user.saveds.filter(description__icontains=word):
+                    posts.add(post)
+                for post in user.saveds.all():
+                    if word in post.author.first_name.lower() or word in post.author.last_name.lower() or word in post.author.username.lower():
+                        posts.add(post)
     for post in posts:
         if request.user.saveds.filter(pk=post.pk).exists():
             post.is_saved = True
@@ -69,12 +124,30 @@ def saved_posts_list(request):
             post.is_liked = True
         else:
             post.is_liked = False
-    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'saveds'}, )
+    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'saveds', 'tags': tags_value}, )
 
 
 def liked_posts_list(request):
     user = request.user
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
     posts = user.likeds.all()
+    if request.method == "POST":
+        words = request.POST.get('words').split()
+        if len(words) > 0:
+            posts = set()
+            for word in words:
+                word = word.lower()
+                for post in user.likeds.filter(description__icontains=word):
+                    posts.add(post)
+                for post in user.likeds.all():
+                    if word in post.author.first_name.lower() or word in post.author.last_name.lower() or word in post.author.username.lower():
+                        posts.add(post)
     for post in posts:
         if request.user.saveds.filter(pk=post.pk).exists():
             post.is_saved = True
@@ -84,7 +157,7 @@ def liked_posts_list(request):
             post.is_liked = True
         else:
             post.is_liked = False
-    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'likeds'}, )
+    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'likeds', 'tags': tags_value}, )
 
 def create_post(request):
     if request.method == 'POST':
