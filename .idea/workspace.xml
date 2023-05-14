@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2345f5a-41f5-4ae8-a3a1-2b4547876ef3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/editProfile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blogs/templates/chat/enterRoom.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blogs/templates/chat/room.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/savedPosts.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/savedPosts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/chat/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/chat/room.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
@@ -49,21 +40,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/kabdy/backend/YourBlog",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kabdy/backend/YourBlog&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kabdy\backend\YourBlog\static\images" />

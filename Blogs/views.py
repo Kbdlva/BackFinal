@@ -186,13 +186,15 @@ def checkview(request):
         return redirect('/'+room+'/?username='+username)
 
 
-# def send(request):
-#     message = request.POST['message']
-#     username = request.user.username
-#     # room_name = request.POST['room_name']
-#     # room = Room.objects.get(name=room_name)
-#
-#
-#     new_message = Message.objects.create(content=message, sender=username)
-#     new_message.save()
-#     return HttpResponse('Message sent successfully')
+def send(request):
+    message = request.POST['message']
+    user = request.user
+    room_name = request.POST['room_id']
+    print(room_name)
+    room = Room.objects.get(name=room_name)
+
+
+    new_message = Message.objects.create(content=message, sender=user, chat=room)
+    print(new_message)
+    new_message.save()
+    return HttpResponse('Message sent successfully')
