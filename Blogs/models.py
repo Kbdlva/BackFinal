@@ -52,14 +52,17 @@ class Tag(models.Model):
     post = models.ManyToManyField(Post, related_name='posts')
 
 
-class Chat(models.Model):
-    participants = models.ManyToManyField(User, related_name='chats')
+# class Chat(models.Model):
+#     participants = models.ManyToManyField(User, related_name='chats')
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+class Room(models.Model):
+    name = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
 class Message(models.Model):
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
+    chat = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='messages')
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    file = models.FileField()
+    content = models.CharField(max_length=1000000)
+    file = models.FileField(upload_to="static/")
     timestamp = models.DateTimeField(auto_now_add=True)

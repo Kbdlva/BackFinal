@@ -1,13 +1,12 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
-from .forms import RegisterForm, PostForm, CommentForm
+from .forms import RegisterForm, PostForm, CommentForm, Profile
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
-from .models import Post, Comment, UserProfile
+from .models import Post, Comment, UserProfile, Room, Message
 import os
-# Create your views here.
 
 @login_required(login_url="/login")
 def home(request):
@@ -24,19 +23,28 @@ def home(request):
             post.is_saved = True
         else:
             post.is_saved = False
-    return render(request, 'Blogs/home.html', {"posts": posts },)
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+    return render(request, 'Blogs/home.html', {"posts": posts},)
 
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comment_set.all()
     is_saved = False
+    is_liked = False
     if request.user.saveds.filter(pk=pk).exists():
         print(request.user.saveds.all())
         is_saved =True
+    if request.user.likeds.filter(pk=pk).exists():
+        print(request.user.likeds.all())
+        is_liked =True
 
     context = {
         'post': post,
         'is_saved': is_saved,
+        'is_liked': is_liked,
         'comments': comments
     }
     return render(request, 'Blogs/post.html', {'post': post, 'comments': comments})
@@ -62,18 +70,6 @@ def create_post(request):
             return redirect("/home")
     else:
         form = PostForm()
-    # liked = False
-    # if request.user.is_authenticated:
-    #     liked = Like.objects.filter(user=request.user, post=post).exists()
-    # if request.method == 'POST' and 'like' in request.POST:
-    #     if not liked:
-    #         Like.objects.create(user=request.user, post=post)
-    #
-    #     else:
-    #         Like.objects.filter(user=request.user, post=post).delete()
-    #
-    #     return redirect('home')
-
 
     return render(request, 'Blogs/create_post.html', {"form": form})
 
@@ -82,10 +78,6 @@ def leave_comment(request, post_pk, comment_pk=None):
 
     if comment_pk is not None:
         comment = get_object_or_404(Comment, post_id=post_pk, pk=comment_pk)
-
-        # def form_valid(self, form):
-        #     form.instance.post_id = self.kwargs['pk']
-        #     return super().form_valid(form)
     else:
         comment = None
     if request.method == 'POST':
@@ -108,7 +100,6 @@ def leave_comment(request, post_pk, comment_pk=None):
                    "related_model_type": "Post"
                    })
 
-
 def get_image_path(relative_path):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(file)))
     return os.path.join(base_dir, relative_path)
@@ -130,7 +121,6 @@ def sign_up(request):
     return render(request, 'registration/sign_up.html', {"form": form})
 
 def profileView(request):
-    print(request.user.myprofile.image.url)
     return render(request, 'Blogs/profile.html')
 
 def get_context_data(self):
@@ -153,9 +143,56 @@ def savePost(request):
             user.saveds.add(request.POST.get('pk'))
     return redirect('/home')
 
-# post_id in comment
-#remove choice for post in comments
+def likePost(request):
+    user = request.user
+    if request.method == 'POST':
+        if request.POST.get('type') == "0":
+            post = user.likeds.get(pk=request.POST.get('pk'))
+            user.likeds.remove(post)
+        else:
+            user.likeds.add(request.POST.get('pk'))
+    return redirect('/home')
 
 
 
+def editProfile(request):
+    if request.method == 'POST':
+        form = Profile(request.POST)
+        if form.is_valid():
+            info = form.save(commit=False)
+            info.save()
+            return redirect("/profile")
+    else:
+        form = Profile()
+    return render(request, 'Blogs/create_post.html', {"form": form})
 
+def enterRoomPage(request):
+    return render(request, 'chat/enterRoom.html')
+
+def room(request, room):
+    username = request.user.username
+    # room_details = Room.objects.get(name=room)
+    return render(request, 'chat/room.html', {'username': username, 'room': room} )
+
+def checkview(request):
+    room = request.POST['room_name']
+    username = request.user.username
+
+    if Room.objects.filter(name=room).exists():
+        return redirect('/'+room+'/?username='+username)
+    else:
+        new_room = Room.objects.create(name=room)
+        new_room.save()
+        return redirect('/'+room+'/?username='+username)
+
+
+# def send(request):
+#     message = request.POST['message']
+#     username = request.user.username
+#     # room_name = request.POST['room_name']
+#     # room = Room.objects.get(name=room_name)
+#
+#
+#     new_message = Message.objects.create(content=message, sender=username)
+#     new_message.save()
+#     return HttpResponse('Message sent successfully')

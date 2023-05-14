@@ -35,16 +35,16 @@
     <h1>
         {{ post.title }}
     </h1>
-    <h2>{{post.description}}</h2>
+    <h2>{{post.description|safe}}</h2>
 
     {% if not comments %}
     <p>No comments yet</p>
-    { % else %}
+    {% else%}
     {% for x in comments %}
     <strong>
         <p>{{x.user.username}}</p>
     </strong>
-    <p>{{x.text|safe}}</p>
+    <p>{{x.text}}</p>
     <p>{{x.data}}</p>
 
     {% endfor %}
