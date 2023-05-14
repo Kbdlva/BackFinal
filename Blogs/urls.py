@@ -14,7 +14,7 @@ urlpatterns = [
     path('like-post', views.likePost, name="like_post"),
     path('editProfile', views.editProfile, name="edit-profile"),
     path('chat', views.enterRoomPage, name="chat"),
-    path('<str:room>/', views.room, name="room"),
+    path('chat/<str:room>/', views.room, name="room"),
     path('checkview', views.checkview, name="checkview"),
     path('send', views.send, name='send'),
 

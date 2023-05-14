@@ -18,9 +18,7 @@ def home(request):
             post = Post.objects.filter(id=post_id).first()
             if post and (post.author == request.user):
                 post.delete()
-<<<<<<< HEAD
-    return render(request, 'Blogs/main.html', {"posts": posts})
-=======
+
     for post in posts:
         if request.user.saveds.filter(pk=post.pk).exists():
             post.is_saved = True
@@ -61,8 +59,6 @@ def saved_posts_list(request):
         "saved_posts": saved_posts
     }
     return render(request, 'Blogs/savedPosts.html', context)
-
->>>>>>> b2d5dca1afbb4490bf1a9e054a315f4db31561fc
 
 def create_post(request):
     if request.method == 'POST':
@@ -145,7 +141,7 @@ def savePost(request):
             user.saveds.remove(post)
         else:
             user.saveds.add(request.POST.get('pk'))
-    return redirect('/home')
+    return redirect('http://127.0.0.1:8000/home#'+request.POST.get('pk'))
 
 def likePost(request):
     user = request.user
@@ -155,7 +151,7 @@ def likePost(request):
             user.likeds.remove(post)
         else:
             user.likeds.add(request.POST.get('pk'))
-    return redirect('/home')
+    return redirect('http://127.0.0.1:8000/home#'+request.POST.get('pk'))
 
 
 
