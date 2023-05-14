@@ -34,7 +34,8 @@ def home(request):
             post.is_liked = False
     return render(request, 'Blogs/home.html', {"posts": posts}, )
 
-
+def default_view(request):
+    return redirect('home')
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comment_set.all()
@@ -53,18 +54,37 @@ def post_details(request, pk):
         'is_liked': is_liked,
         'comments': comments
     }
-    return render(request, 'Blogs/post.html', {'post': post, 'comments': comments})
+    return render(request, 'Blogs/post.html', {'post': post, 'comments': comments, 'redirect_page': 'home'})
 
 
 def saved_posts_list(request):
     user = request.user
-    print(vars(user))
-    saved_posts = user.saveds.all()
+    posts = user.saveds.all()
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'saveds'}, )
 
-    context = {
-        "saved_posts": saved_posts
-    }
-    return render(request, 'Blogs/savedPosts.html', context)
+
+def liked_posts_list(request):
+    user = request.user
+    posts = user.likeds.all()
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'likeds'}, )
 
 def create_post(request):
     if request.method == 'POST':
@@ -168,24 +188,26 @@ def get_context_data(self):
 
 def savePost(request):
     user = request.user
+    path = request.POST.get('path')
     if request.method == 'POST':
         if request.POST.get('type') == "0":
             post = user.saveds.get(pk=request.POST.get('pk'))
             user.saveds.remove(post)
         else:
             user.saveds.add(request.POST.get('pk'))
-    return redirect('http://127.0.0.1:8000/home#'+request.POST.get('pk'))
+    return redirect('http://127.0.0.1:8000/'+path+'#'+request.POST.get('pk'))
 
 
 def likePost(request):
     user = request.user
+    path = request.POST.get('path')
     if request.method == 'POST':
         if request.POST.get('type') == "0":
             post = user.likeds.get(pk=request.POST.get('pk'))
             user.likeds.remove(post)
         else:
             user.likeds.add(request.POST.get('pk'))
-    return redirect('http://127.0.0.1:8000/home#'+request.POST.get('pk'))
+    return redirect('http://127.0.0.1:8000/'+path+'#'+request.POST.get('pk'))
 
 
 # def editProfile(request):

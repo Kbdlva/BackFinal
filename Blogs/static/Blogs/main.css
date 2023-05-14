@@ -10,6 +10,8 @@ body{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    overflow-y: scroll;
+    max-height: 80vh;
 }
 .main{
     background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);
@@ -28,7 +30,6 @@ body{
     font-weight: 700;
     color: #436475;
     padding-left: 60px;
-    position: fixed;
 }
 .menu{
     display: flex;
@@ -54,6 +55,10 @@ body{
     line-height: 24px;
     font-weight: 700;
     align-items: center;
+    color: #436475;
+}
+a:hover {
+    text-decoration: none !important;
 }
 .menu-rows:hover {
     cursor: pointer;
@@ -61,6 +66,7 @@ body{
 }
 .menu-rows:hover > svg path {
     fill: #4FD8E0 !important;
+    stroke: #4FD8E0 !important;
 }
 .tweet{
     background-color: #4fd8e0;

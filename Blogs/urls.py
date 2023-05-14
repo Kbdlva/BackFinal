@@ -3,7 +3,7 @@ from . import views
 from .views import editProfile
 
 urlpatterns = [
-    path('', views.home, name="home"),
+    path('', views.default_view),
     path('home', views.home, name="home"),
     path('sign-up', views.sign_up, name="sign_up"),
     path('create-post', views.create_post, name="create_post"),
@@ -11,7 +11,8 @@ urlpatterns = [
     path('post-details/<int:pk>/', views.post_details, name="post-details"),
     path('profile', views.profileView, name="profile"),
     path('edit-profile', editProfile.as_view(), name="edit-profile"),
-    path('saved_posts', views.saved_posts_list, name="saved_post"),
+    path('saveds', views.saved_posts_list, name="saveds"),
+    path('likeds', views.liked_posts_list, name="likeds"),
     path('save-post', views.savePost, name="save_post"),
     path('like-post', views.likePost, name="like_post"),
     path('chat', views.enterRoomPage, name="chat"),
