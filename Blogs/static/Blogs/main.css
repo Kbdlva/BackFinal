@@ -77,10 +77,10 @@ a:hover {
     border-radius: 30px;
 }
 .right-hand{
-    padding-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 32px;
+    padding: 0 40px 0 0;
 }
 .nick-acc{
     display: flex;
@@ -88,6 +88,7 @@ a:hover {
     /*align-items: center;*/
     justify-content: center;
     gap: 1px;
+    white-space: nowrap;
 }
 .info{
  margin: 0;   /*margin-bottom: 1px;*/
@@ -104,14 +105,17 @@ a:hover {
 .user-acc{
     display: flex;
     flex-direction: row;
-    gap: 170px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    min-width: 300px;
 }
 
 .name-acc{
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 57px;
+    justify-content: space-between;
 }
 .message-cont{
     display: flex;

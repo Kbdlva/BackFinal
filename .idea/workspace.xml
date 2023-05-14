@@ -3,15 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="21795045-8c7c-494f-8ae2-d67c0a78bfd3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/static/Blogs/chat_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/static/Blogs/chat_page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/static/Blogs/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/static/Blogs/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/messages.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/messages.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +70,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684085378789</updated>
-      <workItem from="1684085379955" duration="10095000" />
+      <workItem from="1684085379955" duration="14754000" />
     </task>
     <servers />
   </component>

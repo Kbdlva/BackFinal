@@ -157,7 +157,7 @@ setInterval(function(){
                 <form >
                     {% csrf_token %}
                 <input type="text" id="fname" name="firstname" placeholder="Message"
-                       style="font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 16px;line-height: 30px;color: #707991;  width: 950px;border: 1px solid #FFFFFF;">
+                       style="font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 16px;line-height: 30px;color: #707991;border: 1px solid #FFFFFF;">
                     </form>
             </div>
             <svg id="sender" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,10 +177,34 @@ setInterval(function(){
           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
-         //alert(data)
+         // alert(data)
+          var container = $("#all-chat")
+      container.scrollTop(container.prop("scrollHeight"));
       }
     });
     document.getElementById('fname').value = ''
+
+  });
+  $('#fname').keydown(function (e) {
+      if (e.which === 13 && $(this).is(":focus")) {
+      e.preventDefault(); // Prevent form submission
+          $.ajax({
+      type:'POST',
+      url:'/send',
+      data:{
+          room_id:{{ room.pk }},
+          message:$('#fname').val(),
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+         // alert(data)
+          var container = $("#all-chat")
+      container.scrollTop(container.prop("scrollHeight"));
+      }
+    });
+    document.getElementById('fname').value = ''
+
+    }
   });
 </script>
 {% endblock %}
