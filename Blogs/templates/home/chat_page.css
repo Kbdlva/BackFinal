@@ -1,0 +1,109 @@
+
+.chat-container {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: flex-end;
+    gap: 35px;
+    background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);
+}
+
+.chat-profile {
+    /*width: 597px;*/
+    /*height: 56px;*/
+    padding: 8px 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /*gap: 200px;*/
+    background: #FFFFFF;
+    border-bottom: 1px solid #D9DCE0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    gap: 17px;
+}
+
+.name-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chat-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sent-mess {
+    background: rgba(42, 163, 239, 0.04);
+    mix-blend-mode: normal;
+    /*width: 597px;*/
+    padding: 8px 0px;
+}
+.all-chat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.chat-day {
+    background-color: rgba(61, 112, 184, 0.6);
+    border-radius: 12px;
+    /*width: 100px;*/
+}
+.first-mess{
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 4px 12px;
+    background-color: #FFFFFF;
+    /*margin-right: 150px;*/
+    align-self: flex-start;
+    float: left;
+    /*inline-size: 402px;*/
+    /*overflow-wrap: break-word;*/
+    max-width: 402px;
+    gap: 8px;
+
+}
+.time-mess{
+    display: flex;
+    flex-direction: row;
+    float: right;
+    align-self: flex-end;
+}
+.own-mess{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    float: right;
+     border-radius: 12px;
+    padding: 4px 12px;
+    background-color: #FFFFFF;
+    overflow-wrap: break-word;
+    align-self: end;
+    max-width: 400px;
+}
+.send-box{
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    padding: 8px 15px;
+    /*align-self: flex-end;*/
+}
+.input-mess{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

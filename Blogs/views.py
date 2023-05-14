@@ -16,7 +16,7 @@ def home(request):
             post = Post.objects.filter(id=post_id).first()
             if post and (post.author == request.user):
                 post.delete()
-    return render(request, 'Blogs/home.html', {"posts": posts})
+    return render(request, 'Blogs/main.html', {"posts": posts})
 
 def create_post(request):
     if request.method == 'POST':

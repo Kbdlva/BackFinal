@@ -1,0 +1,35 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+.trending{
+    background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);
+    border-radius: 12px;
+}
+.trending-cont{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 50px;
+    gap: 60px;
+}
+.top-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*align-items: center;*/
+    justify-content: space-around;
+}
+.menu-trending{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-around;*/
+    gap: 17px;
+}
+.menu-tags{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}

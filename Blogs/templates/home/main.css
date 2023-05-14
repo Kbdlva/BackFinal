@@ -1,0 +1,236 @@
+
+/*.main {*/
+/*    width: 100%;*/
+/*    height: 100vh;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);*/
+/*    !*display: flex;*!*/
+/*    !*flex-direction: row;*!*/
+/*}*/
+
+
+/*.left {*/
+/*    width: 30%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*!*.menu {*!*/
+/*!*    position: absolute;*!*/
+/*!*    width: 186px;*!*/
+/*!*    height: 247px;*!*/
+/*!*    left: 65px;*!*/
+/*!*    top: 150px;*!*/
+/*!*}*!*/
+
+/*.middle {*/
+/*    margin-right: 20px;*/
+/*}*/
+
+/*.button {*/
+/*    background-color: #4FD8E0;*/
+/*    border: none;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    font-size: 16px;*/
+/*    margin: 4px 2px;*/
+/*    width: 186px;*/
+/*    height: 46px;*/
+/*    line-height: 21px;*/
+/*    left: 72px;*/
+/*    top: 479px;*/
+/*    font-style: normal;*/
+/*    font-weight: 700;*/
+/*    border-radius: 30px;*/
+/*    margin-top: 35px;*/
+/*}*/
+
+/*.button:hover {*/
+/*    border: none;*/
+
+/*}*/
+
+/*ul {*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*}*/
+
+/*ul a {*/
+/*    display: block;*/
+/*    padding: 10px;*/
+/*    text-decoration: none;*/
+/*    color: #333;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*ul a:hover {*/
+/*    color: #4FD8E0;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.links {*/
+/*    !*font-family: 'Poppins';*!*/
+/*    !*font-style: normal;*!*/
+/*    font-weight: 700;*/
+/*    font-size: 16px;*/
+/*    line-height: 24px;*/
+/*    color: #436475;*/
+/*}*/
+
+/*.profile_header {*/
+/*    position: absolute;*/
+/*    width: 295px;*/
+/*    height: 50px;*/
+/*    left: 999px;*/
+/*    border-radius: 30px;*/
+/*    top: 38px;*/
+/*     background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);*/
+/*    !*display: inline;*!*/
+/*    !*float: left;*!*/
+/*    display: flex;*/
+/*}*/
+
+/*.about {*/
+/*    !*display: flex;*!*/
+/*    !*align-items:center;*!*/
+/*    margin-left: 10px;*/
+/*}*/
+
+/*.info {*/
+/*    margin-bottom: 3px;*/
+/*    !*font-family: 'Poppins';*!*/
+/*    !*font-style: normal;*!*/
+/*    font-weight: 700;*/
+/*    font-size: 16px;*/
+/*    line-height: 25px;*/
+/*    !* identical to box height *!*/
+
+
+/*    color: #436475;*/
+/*}*/
+/*.img_re{*/
+/*    width: 25px;*/
+/*    height: 25px;*/
+/*    margin-left: 100px;*/
+/*    margin-top: 10px;*/
+/*}*/
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+.main{
+    background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 550px;
+}
+.left-hand{
+    display: flex;
+    flex-direction: column;
+    gap: 105px;
+     font-family: 'Poppins';
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #436475;
+    padding-top: 30px;
+
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins';
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    gap: 80px;
+    color: #436475;
+}
+.menu-gap{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.menu-rows{
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+     font-family: 'Poppins';
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+}
+.tweet{
+    background-color: #4fd8e0;
+    padding: 10px 20px;
+    width: 186px;
+    text-align: center;
+    color: white !important;
+    border-radius: 30px;
+}
+.right-hand{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.nick-acc{
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: center;
+    gap: 1px;
+}
+.info{
+ margin: 0;   /*margin-bottom: 1px;*/
+}
+.profile{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.user-settings{
+    display: flex;
+    align-items:center ;
+}
+.user-acc{
+    display: flex;
+    flex-direction: row;
+    gap: 170px;
+}
+
+.name-acc{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 57px;
+}
+.message-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.chat-list{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}.messenger{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 12px 12px;
+    background: rgba(42, 163, 239, 0.04);
+    border-radius: 30px;
+    gap: 16px;
+ }
+
+
+
+
+
