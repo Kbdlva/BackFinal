@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Blogs',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor'
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -81,24 +82,24 @@ WSGI_APPLICATION = 'YourBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-        'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'final',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': 'mongodb+srv://admin:backendFinal@cluster0.c3lagl5.mongodb.net/test'
-            }
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'NAME': 'final',
+#             'ENFORCE_SCHEMA': True,
+#             'CLIENT': {
+#                 'host': 'mongodb+srv://admin:backendFinal@cluster0.c3lagl5.mongodb.net/test'
+#             }
+#         }
+# }
+#
 
 
 # Password validation
@@ -141,6 +142,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = 'static/'
+#
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'media')]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
 
 
 LOGIN_REDIRECT_URL = '/home'

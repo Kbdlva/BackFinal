@@ -1,0 +1,55 @@
+{% extends 'Blogs/base.html' %} {% block title %}Post details{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="create-post">Post</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                <span class="navbar-text"> {{user.username}} | </span>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+<div>
+    <h1>
+        {{ post.title }}
+    </h1>
+    <h2>{{post.description|safe}}</h2>
+
+    {% if not comments %}
+    <p>No comments yet</p>
+    {% else%}
+    {% for x in comments %}
+    <strong>
+        <p>{{x.user.username}}</p>
+    </strong>
+    <p>{{x.text}}</p>
+    <p>{{x.data}}</p>
+
+    {% endfor %}
+    {% endif%}
+</div>
+
+
+{% endblock %}
