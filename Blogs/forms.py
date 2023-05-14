@@ -17,17 +17,16 @@ class Profile(UserCreationForm):
         fields = ('__all__')
 
 
-# choices = Category.objects.all().values_list('name','name')
-#
-# choice_list = [('', '' ), ('sport','sport'),('news','news'),('entertainment', 'entertainment' )]
-#
-# for item in choices:
-#     choice_list.append(item)
+# class UserEditView(UserChangeForm):
+#     class Meta:
+#         model = UserProfile
+#         fields = ('__all__')
+
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["title",  "description", "tag"]
+        fields = ["title",  "description"]
 
         # widgets = {
         #     'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'})

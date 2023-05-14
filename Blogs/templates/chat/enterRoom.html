@@ -96,8 +96,8 @@ body {
 
     <form id="post-form" method="POST" action="{% url 'checkview' %}">
         {% csrf_token %}
-        <label>Room Name</label>
-        <input type="text" name="room_name" id="room_name" width="100px" />
+        <label>Username</label>
+        <input type="text" name="friend" id="room_name" width="100px" />
         <label>Username</label>
         <p> {{user.username}}</p>
         <input type="submit" value="Enter Room">

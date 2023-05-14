@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'Blogs',
     'crispy_forms',
     'crispy_bootstrap5',
-    'ckeditor'
+    'ckeditor',
+    'taggit',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -155,3 +157,5 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/login'
 
+
+TAGGIT_CASE_INSENSITIVE = True

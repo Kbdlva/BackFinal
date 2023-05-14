@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a557fdb8-3562-4201-8139-90b7edbdf8fb" name="Changes" comment="" />
+=======
+    <list default="true" id="c2345f5a-41f5-4ae8-a3a1-2b4547876ef3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Blogs/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0002_alter_userprofile_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0003_alter_post_description.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0004_remove_userprofile_id_alter_userprofile_image_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0005_alter_userprofile_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0006_room.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0007_remove_room_slug_room_created_at_alter_message_chat_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/templates/chat/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/chat/room.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YourBlog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/YourBlog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
+>>>>>>> 029887c6a46c7dbd83f84a64dabd4544b753b8ab
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +37,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+<<<<<<< HEAD
         <option value="CSS File" />
+=======
+        <option value="Python Script" />
+>>>>>>> 029887c6a46c7dbd83f84a64dabd4544b753b8ab
       </list>
     </option>
   </component>
