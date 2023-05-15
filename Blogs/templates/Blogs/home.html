@@ -3,7 +3,7 @@
 
 
 {% block content %}
-    <div>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
         <script>
 
         </script>
@@ -129,7 +129,7 @@
                     </style>
                     <div class="post_header">
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="http://127.0.0.1:8000/media/images{{ request.user.myprofile.image.url|slice:"6:" }}"
+                            <img src="{{ MEDIA_URL }} {{ post.author.myprofile.image.url }}"
                                  class="post_author_ava" alt="ava"/>
                             <div class="post_author">
                                 @{{ post.author.username }}
@@ -145,7 +145,10 @@
                         {{ post.description|safe }}
                     </div>
                     <div style="display: flex; justify-content: center; width: 540px">
-                        <img src="image.png" class="post_image" alt="post"/>
+                        {% if post.image.url %}
+                            <img src="{{ MEDIA_URL }} {{ post.image.url }}" class="post_image" alt="post"/>
+                        {% endif %}
+
                     </div>
                     <div class="container_icons">
                         <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">

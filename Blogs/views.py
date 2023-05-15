@@ -172,10 +172,11 @@ def create_post(request):
             for tag in tags:
                 try:
                     new_tag = Tag.objects.get(name=tag)
+                    post.post_tags.add(new_tag.pk)
                 except Tag.DoesNotExist:
                     new_tag = Tag(name=tag)
                     new_tag.save()
-            post.post_tags.add(new_tag.pk)
+                    post.post_tags.add(new_tag.pk)
 
             post.save()
             return redirect("/home")
