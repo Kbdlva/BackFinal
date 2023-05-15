@@ -1,6 +1,6 @@
 
 .chat-container {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     display: flex;
     flex-direction: column;
     /*align-items: center;*/
@@ -47,6 +47,8 @@
     mix-blend-mode: normal;
     /*width: 597px;*/
     padding: 8px 0px;
+    display: flex;
+    justify-content: flex-end;
 }
 .all-chat{
     display: flex;
