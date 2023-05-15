@@ -10,6 +10,8 @@ body{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    overflow-y: scroll;
+    max-height: 80vh;
 }
 .main{
     background: linear-gradient(251.51deg, #F7F9FA 12.74%, #F7F9FA 98.57%);
@@ -28,7 +30,6 @@ body{
     font-weight: 700;
     color: #436475;
     padding-left: 60px;
-    /*position: fixed;*/
 }
 .menu{
     display: flex;
@@ -54,6 +55,10 @@ body{
     line-height: 24px;
     font-weight: 700;
     align-items: center;
+    color: #436475;
+}
+a:hover {
+    text-decoration: none !important;
 }
 .menu-rows:hover {
     cursor: pointer;
@@ -61,6 +66,7 @@ body{
 }
 .menu-rows:hover > svg path {
     fill: #4FD8E0 !important;
+    stroke: #4FD8E0 !important;
 }
 .tweet{
     background-color: #4fd8e0;
@@ -71,10 +77,10 @@ body{
     border-radius: 30px;
 }
 .right-hand{
-    /*padding-top: 20px;*/
     display: flex;
     flex-direction: column;
     gap: 32px;
+    padding: 0 40px 0 0;
 }
 .nick-acc{
     display: flex;
@@ -82,6 +88,7 @@ body{
     /*align-items: center;*/
     justify-content: center;
     gap: 1px;
+    white-space: nowrap;
 }
 .info{
  margin: 0;   /*margin-bottom: 1px;*/
@@ -98,14 +105,17 @@ body{
 .user-acc{
     display: flex;
     flex-direction: row;
-    gap: 170px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    min-width: 300px;
 }
 
 .name-acc{
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 57px;
+    justify-content: space-between;
 }
 .message-cont{
     display: flex;
@@ -133,7 +143,155 @@ body{
      border-radius: 50%;
  }
 
+    .setting-text {
+    font-family: 'Poppins';
+    font-size: 30px;
+    color: #232360;
+    background: none;
+    margin-left: 40px;
+}
 
+.oboipng {
+    display: flex;
+    border: solid 7px #ffffff;
+    margin: 0;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+}
+
+.buttons {
+    background: none;
+    /*display: flex;*/
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /*align-items: center;*/
+    /*justify-content: flex-end;*/
+}
+
+.cancel-btn {
+    font-family: 'Poppins';
+    background-color: #007bff;
+    color: #000000;;
+    border: solid 2px #6A7181;
+    border-radius: 4px;
+    /*cursor: pointer;*/
+    transition: background-color 0.6s ease;
+}
+
+.cancel-btn:hover {
+    background: #4FD8E0;
+    color: white;
+    border: solid 2px #4FD8E0;
+}
+
+.save-btn {
+    font-family: 'Poppins';
+    color: white;
+    border: solid 2px #4FD8E0;
+    border-radius: 4px;
+    background: #4FD8E0;
+    transition: background-color 0.6s ease;
+}
+
+.save-btn:hover {
+    background-color: white;
+    color: black;
+    border: solid 2px #6A7181;
+}
+
+.cansavset {
+    display: flex;
+    flex-direction: row;
+    background: none;
+    justify-content: space-around;
+    gap: 300px;
+}
+.ellipse-sett{
+    display: flex;
+    flex-direction: row;
+}
+
+.group-sett {
+    background: none;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: -1000px;
+    margin-top: 30px;
+}
+.all-settings{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-sett {
+    background: none;
+}
+
+.profile-link {
+    font-family: 'Poppins';
+    background: none;
+    color: #6A7181;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: #232360;
+}
+
+.fill-name {
+    background: none;
+    margin-top: 50px;
+}
+
+.rowset, .colset, .right-row, .rows {
+    background: none;
+}
+
+.rows {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rowset {
+    font-family: 'Poppins';
+    display: flex;
+    flex-direction: column;
+    color: #232360;
+}
+
+.right-row {
+    font-family: 'Poppins';
+    display: flex;
+    flex-direction: column;
+    color: #232360;
+}
+
+.colset {
+    font-family: 'Poppins';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #232360;
+    margin-top: 20px;
+}
+
+.fillin {
+    width: 300px;
+    height: 35px;
+    left: 833px;
+    top: 512px;
+    border: 1px solid #E5E5ED;
+    border-radius: 9px;
+}
+
+.search-ic{
+    margin-left: 10px;
+}
 
 
 

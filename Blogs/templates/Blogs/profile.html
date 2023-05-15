@@ -1,29 +1,44 @@
 {% extends "Blogs/base.html" %}
-{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<div class="content-section">
-    <div class="media">
-        {% if user.myprofile.image %}
-        <img class="rounded-circle account-img" style="width: 100px; height:100px;"
-             src="http://127.0.0.1:8000{{ user.myprofile.image.url }}"
-             alt="User Profile Image">
-        {% else %}
-        <img class="rounded-circle account-img" src="http://127.0.0.1:8000/media/images/profile.png" alt="img here">
+    <div>
+<div style="position: relative">
+        <img src="{% static 'Blogs/phone.png' %}" style="width: 900px">
+    <img src="{{ MEDIA_URL }} {{ user.myprofile.image.url }}" class="oboipng" style="position: absolute; bottom: -50px; left: 40px">
+    </div>
+        <div class="rectangle-sett">
+<form method="POST" id="profform">
+                        {% csrf_token %}
+            <div class="cansavset">
+                <div class="ellipse-sett">
+
+                    <div class="setting-text" style="margin: 0;display: flex;align-items: center;justify-content: center">Settings</div>
+                </div>
+                <div class="buttons">
 
 
-        {% endif %}
-        <div class="media-body">
-            <h2 class="account-heading">@{{ user.username }}</h2>
+
+                    <button class="cancel-btn">Cancel</button>
+                    <input class="save-btn" type="submit" value="Save">
+                </div>
+            </div>
+            <div class="group-sett">
+                <div class="profile-sett"><a href="#" class="profile-link">Profile</a></div>
+                <div class="profile-sett"><a href="#" class="profile-link">Password</a></div>
+                <div class="profile-sett"><a href="#" class="profile-link">Account Settings</a></div>
+            </div>
+            <div class="fill-name">
+                <div class="rows">
+                    <div class="rowset"> First Name <input type="text" name="first_name" class="fillin" placeholder="{{ user.first_name }}"></div>
+                    <div class="right-row"> Last Name <input type="text" name="last_name" class="fillin" placeholder="{{ user.last_name }}"></div>
+                </div>
+                <div class="colset"> Email <input type="email" name="email" class="fillin" placeholder="{{ user.email }}"></div>
+            </div>
+    </form>
         </div>
     </div>
-       <li class="nav-item">
-                    <a class="nav-link" href="/edit-profile">Edit</a>
-                </li>
-    <form method="post">
+    </div>
 
-        <button type="submit" class="btn btn-success">Edit</button>
-    </form>
-    <!-- FORM HERE -->
-</div>
+
+
 {% endblock content %}

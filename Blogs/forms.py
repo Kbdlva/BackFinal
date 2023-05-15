@@ -24,9 +24,10 @@ class Profile(UserCreationForm):
 
 
 class PostForm(forms.ModelForm):
+    file_field = forms.FileField()
     class Meta:
         model = Post
-        fields = ["title",  "description"]
+        fields = ["title",  "description", "file_field", "image"]
 
         # widgets = {
         #     'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'})

@@ -1,55 +1,212 @@
 {% extends 'Blogs/base.html' %} {% block title %}Post details{% endblock %}
 
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <div>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="create-post">Post</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <ul class="navbar-nav">
-                {% if user.is_authenticated %}
-                <span class="navbar-text"> {{user.username}} | </span>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</nav>
+
 {% endblock %}
 {% block content %}
-<div>
-    <h1>
-        {{ post.title }}
-    </h1>
-    <h2>{{post.description|safe}}</h2>
+    <div>
 
-    {% if not comments %}
-    <p>No comments yet</p>
-    {% else%}
-    {% for x in comments %}
-    <strong>
-        <p>{{x.user.username}}</p>
-    </strong>
-    <p>{{x.text}}</p>
-    <p>{{x.data}}</p>
 
-    {% endfor %}
-    {% endif%}
-</div>
+        <div class="post_anchor" id="{{ post.pk }}">
+
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+                  rel="stylesheet">
+            <style>
+                .container_icons {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 20px;
+                }
+
+                .post_anchor {
+                    background: rgba(42, 163, 239, 0.1);
+                    border-radius: 30px;
+                    padding: 20px 30px;
+                    width: max-content;
+                }
+
+                .post_text {
+                    font-family: Poppins;
+                    font-weight: 400;
+                    font-size: 12px;
+                    color: #436475;
+                    padding-left: 45px;
+                    width: 450px;
+                    overflow-wrap: break-word;
+                }
+
+                .post_author {
+                    font-family: 'Poppins';
+                    font-weight: 700;
+                    font-size: 16px;
+                    color: #436475;
+                }
+
+                .post_image {
+                    width: 470px;
+                    height: 264px;
+                    border-radius: 30px;
+                    margin: 20px 0;
+                }
+
+                .post_author_ava {
+                    width: 35px;
+                    aspect-ratio: 1 / 1;
+                }
+
+                .post_header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .svg-button {
+                    border: none;
+                    background-color: transparent;
+                    padding: 0;
+                    cursor: pointer;
+                }
+
+                .svg-button:focus {
+                    outline: none;
+                }
+            </style>
+            <div class="post_header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="{{ MEDIA_URL }} {{ post.author.myprofile.image.url }}"
+                         class="post_author_ava" alt="ava"/>
+                    <div class="post_author">
+                        @{{ post.author.username }}
+                    </div>
+                </div>
+                <a href="{% url 'post-details' pk=post.pk %}">
+                    <svg width="18" height="4" viewBox="0 0 18 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2H2.01H2ZM9 2H9.01H9ZM16 2H16.01H16ZM3 2C3 2.26522 2.89464 2.51957 2.70711 2.70711C2.51957 2.89464 2.26522 3 2 3C1.73478 3 1.48043 2.89464 1.29289 2.70711C1.10536 2.51957 1 2.26522 1 2C1 1.73478 1.10536 1.48043 1.29289 1.29289C1.48043 1.10536 1.73478 1 2 1C2.26522 1 2.51957 1.10536 2.70711 1.29289C2.89464 1.48043 3 1.73478 3 2V2ZM10 2C10 2.26522 9.89464 2.51957 9.70711 2.70711C9.51957 2.89464 9.26522 3 9 3C8.73478 3 8.48043 2.89464 8.29289 2.70711C8.10536 2.51957 8 2.26522 8 2C8 1.73478 8.10536 1.48043 8.29289 1.29289C8.48043 1.10536 8.73478 1 9 1C9.26522 1 9.51957 1.10536 9.70711 1.29289C9.89464 1.48043 10 1.73478 10 2V2ZM17 2C17 2.26522 16.8946 2.51957 16.7071 2.70711C16.5196 2.89464 16.2652 3 16 3C15.7348 3 15.4804 2.89464 15.2929 2.70711C15.1054 2.51957 15 2.26522 15 2C15 1.73478 15.1054 1.48043 15.2929 1.29289C15.4804 1.10536 15.7348 1 16 1C16.2652 1 16.5196 1.10536 16.7071 1.29289C16.8946 1.48043 17 1.73478 17 2V2Z"
+                              stroke="#436475" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="post_text">
+                {{ post.description|safe }}
+            </div>
+            <div style="display: flex; justify-content: center; width: 540px">
+                {% if post.image.url %}
+                    <img src="{{ MEDIA_URL }} {{ post.image.url }}" class="post_image" alt="post"/>
+                {% endif %}
+
+            </div>
+            <div class="container_icons">
+                <a href="{% url 'leave-comment' post_pk=post.pk %}">
+                    <svg width="18" height="16" viewBox="0 0 18 16" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.66667 7.99967H5.675H5.66667ZM9 7.99967H9.00833H9ZM12.3333 7.99967H12.3417H12.3333ZM16.5 7.99967C16.5 11.6813 13.1417 14.6663 9 14.6663C7.77386 14.6705 6.56233 14.4003 5.45417 13.8755L1.5 14.6663L2.6625 11.5663C1.92667 10.5347 1.5 9.31134 1.5 7.99967C1.5 4.31801 4.85833 1.33301 9 1.33301C13.1417 1.33301 16.5 4.31801 16.5 7.99967Z"
+                              stroke="#436475" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"></path>
+                    </svg>
+                </a>
+                <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.1667 14.6663L9.83333 11.333M4.83333 11.333V1.33301V11.333ZM4.83333 1.33301L1.5 4.66634L4.83333 1.33301ZM4.83333 1.33301L8.16667 4.66634L4.83333 1.33301ZM13.1667 4.66634V14.6663V4.66634ZM13.1667 14.6663L16.5 11.333L13.1667 14.6663Z"
+                          stroke="#436475" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
+
+                {% if not post.is_liked %}
+                    <form method="post" action="http://127.0.0.1:8000/like-post">
+                        {% csrf_token %}
+                        <input style="display: none" value={{ post.pk }} name="pk"/>
+                        <input style="display: none" value="1" name="type"/>
+                        <input type="hidden" value="{{ redirect_page }}" name="path">
+                        <button
+                                type="submit"
+                                class="svg-button"
+                        >
+                            <svg width="18" height="15" viewBox="0 0 18 15" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.59837 2.26536C2.25014 2.61358 1.97391 3.02698 1.78546 3.48195C1.597 3.93693 1.5 4.42456 1.5 4.91702C1.5 5.40949 1.597 5.89712 1.78546 6.3521C1.97391 6.80707 2.25014 7.22047 2.59837 7.56869L9.00003 13.9704L15.4017 7.56869C16.105 6.86543 16.5001 5.91159 16.5001 4.91702C16.5001 3.92246 16.105 2.96862 15.4017 2.26536C14.6984 1.56209 13.7446 1.167 12.75 1.167C11.7555 1.167 10.8016 1.56209 10.0984 2.26536L9.00003 3.36369L7.9017 2.26536C7.55348 1.91713 7.14008 1.64091 6.68511 1.45245C6.23013 1.26399 5.74249 1.16699 5.25003 1.16699C4.75757 1.16699 4.26993 1.26399 3.81496 1.45245C3.35998 1.64091 2.94659 1.91713 2.59837 2.26536V2.26536Z"
+                                      stroke="#436475" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"></path>
+                            </svg>
+
+                        </button>
+                    </form>
+                {% else %}
+                    <form method="post" action="http://127.0.0.1:8000/like-post">
+                        {% csrf_token %}
+                        <input style="display: none" value={{ post.pk }} name="pk"/>
+                        <input style="display: none" value="0" name="type"/>
+                        <input type="hidden" value="{{ redirect_page }}" name="path">
+                        <button
+                                type="submit"
+                                class="svg-button">
+                            <svg width="18" height="15" viewBox="0 0 18 15" fill="#436475"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.59837 2.26536C2.25014 2.61358 1.97391 3.02698 1.78546 3.48195C1.597 3.93693 1.5 4.42456 1.5 4.91702C1.5 5.40949 1.597 5.89712 1.78546 6.3521C1.97391 6.80707 2.25014 7.22047 2.59837 7.56869L9.00003 13.9704L15.4017 7.56869C16.105 6.86543 16.5001 5.91159 16.5001 4.91702C16.5001 3.92246 16.105 2.96862 15.4017 2.26536C14.6984 1.56209 13.7446 1.167 12.75 1.167C11.7555 1.167 10.8016 1.56209 10.0984 2.26536L9.00003 3.36369L7.9017 2.26536C7.55348 1.91713 7.14008 1.64091 6.68511 1.45245C6.23013 1.26399 5.74249 1.16699 5.25003 1.16699C4.75757 1.16699 4.26993 1.26399 3.81496 1.45245C3.35998 1.64091 2.94659 1.91713 2.59837 2.26536V2.26536Z"
+                                      stroke="#436475" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                    </form>
+                {% endif %}
+
+                {% if not post.is_saved %}
+                    <form method="post" action="http://127.0.0.1:8000/save-post">
+                        {% csrf_token %}
+                        <input style="display: none" value={{ post.pk }} name="pk"/>
+                        <input style="display: none" value="1" name="type"/>
+                        <input type="hidden" value="{{ redirect_page }}" name="path">
+                        <button
+                                type="submit" class="svg-button"
+                        >
+                            <svg width="14" height="18" viewBox="0 0 14 18" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.1665 3.16667C1.1665 2.72464 1.3421 2.30072 1.65466 1.98816C1.96722 1.67559 2.39114 1.5 2.83317 1.5H11.1665C11.6085 1.5 12.0325 1.67559 12.345 1.98816C12.6576 2.30072 12.8332 2.72464 12.8332 3.16667V16.5L6.99984 13.5833L1.1665 16.5V3.16667Z"
+                                      stroke="#436475" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+
+                    </form>
+                {% else %}
+                    <form method="post" action="http://127.0.0.1:8000/save-post">
+                        {% csrf_token %}
+                        <input style="display: none" value={{ post.pk }} name="pk"/>
+                        <input style="display: none" value="0" name="type"/>
+                        <input type="hidden" value="{{ redirect_page }}" name="path">
+                        <button
+                                type="submit" class="svg-button"
+                        >
+                            <svg width="14" height="18" viewBox="0 0 14 18" fill="#436475"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.1665 3.16667C1.1665 2.72464 1.3421 2.30072 1.65466 1.98816C1.96722 1.67559 2.39114 1.5 2.83317 1.5H11.1665C11.6085 1.5 12.0325 1.67559 12.345 1.98816C12.6576 2.30072 12.8332 2.72464 12.8332 3.16667V16.5L6.99984 13.5833L1.1665 16.5V3.16667Z"
+                                      stroke="#436475" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% if pf %}
+        <a href="{{ pf.url }}" download>
+            {{ pf.url }}
+        </a>
+    {% endif %}
+        {% if not comments %}
+            <p>No comments yet</p>
+        {% else %}
+            {% for x in comments %}
+                <strong>
+                    <p>{{ x.user.username }}</p>
+                </strong>
+                <p>{{ x.text }}</p>
+                <p>{{ x.data }}</p>
+
+            {% endfor %}
+        {% endif %}
+    </div>
 
 
 {% endblock %}

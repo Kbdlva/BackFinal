@@ -25,6 +25,9 @@ class Post(models.Model):
         return self.title + "\n" + self.description
 
 
+class File(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.CASCADE, null=True)
+    file = models.FileField(upload_to='files', null=True)
 # class SavedPost(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)
 #     post = models.ForeignKey(Post, on_delete=models.CASCADE)

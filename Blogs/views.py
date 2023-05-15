@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -8,20 +9,31 @@ from .utils import extract_tags
 from .forms import RegisterForm, PostForm, CommentForm, Profile
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, logout, authenticate
-from .models import Tag, Post, Comment, UserProfile, Room, Message
+from .models import Tag, Post, Comment, UserProfile, Room, Message, File
 import os
 
 
 @login_required(login_url="/login")
 def home(request):
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
     posts = Post.objects.all()
     if request.method == "POST":
-        post_id = request.POST.get("post-id")
-
-        if post_id:
-            post = Post.objects.filter(id=post_id).first()
-            if post and (post.author == request.user):
-                post.delete()
+        words = request.POST.get('words').split()
+        if len(words) > 0:
+            posts = set()
+            for word in words:
+                word = word.lower()
+                for post in Post.objects.filter(description__icontains=word):
+                    posts.add(post)
+                for post in Post.objects.all():
+                    if word in post.author.first_name.lower() or word in post.author.last_name.lower() or word in post.author.username.lower():
+                        posts.add(post)
 
     for post in posts:
         if request.user.saveds.filter(pk=post.pk).exists():
@@ -32,9 +44,36 @@ def home(request):
             post.is_liked = True
         else:
             post.is_liked = False
-    return render(request, 'Blogs/home.html', {"posts": posts}, )
+    return render(request, 'Blogs/home.html', {"posts": posts, "tags": tags_value}, )
 
 
+def posts_by_tag(request, tag_name):
+    try:
+        tag = Tag.objects.get(name='#'+str(tag_name))
+    except Tag.DoesNotExist:
+        return redirect('home')
+    posts = tag.post.all()
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+
+    return render(request, 'Blogs/home.html', {"posts": posts, "tags": tags_value, "tag_name": tag_name}, )
+
+def default_view(request):
+    return redirect('home')
 def post_details(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = post.comment_set.all()
@@ -53,36 +92,100 @@ def post_details(request, pk):
         'is_liked': is_liked,
         'comments': comments
     }
-    return render(request, 'Blogs/post.html', {'post': post, 'comments': comments})
+    pf = None
+    try:
+        pf = post.file.file
+    except:
+        pf = None
+
+
+    return render(request, 'Blogs/post.html', {'post': post, 'pf': pf,'comments': comments, 'redirect_page': 'home'})
 
 
 def saved_posts_list(request):
     user = request.user
-    print(vars(user))
-    saved_posts = user.saveds.all()
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
+    posts = user.saveds.all()
+    if request.method == "POST":
+        words = request.POST.get('words').split()
+        if len(words) > 0:
+            posts = set()
+            for word in words:
+                word = word.lower()
+                for post in user.saveds.filter(description__icontains=word):
+                    posts.add(post)
+                for post in user.saveds.all():
+                    if word in post.author.first_name.lower() or word in post.author.last_name.lower() or word in post.author.username.lower():
+                        posts.add(post)
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'saveds', 'tags': tags_value}, )
 
-    context = {
-        "saved_posts": saved_posts
-    }
-    return render(request, 'Blogs/savedPosts.html', context)
+
+def liked_posts_list(request):
+    user = request.user
+    tags = Tag.objects.all()
+    tags_value = []
+    for tag in tags:
+        tags_value.append({
+            'name': tag.name,
+            'amount': len(tag.post.all())
+        })
+    posts = user.likeds.all()
+    if request.method == "POST":
+        words = request.POST.get('words').split()
+        if len(words) > 0:
+            posts = set()
+            for word in words:
+                word = word.lower()
+                for post in user.likeds.filter(description__icontains=word):
+                    posts.add(post)
+                for post in user.likeds.all():
+                    if word in post.author.first_name.lower() or word in post.author.last_name.lower() or word in post.author.username.lower():
+                        posts.add(post)
+    for post in posts:
+        if request.user.saveds.filter(pk=post.pk).exists():
+            post.is_saved = True
+        else:
+            post.is_saved = False
+        if request.user.likeds.filter(pk=post.pk).exists():
+            post.is_liked = True
+        else:
+            post.is_liked = False
+    return render(request, 'Blogs/home.html', {"posts": posts, 'redirect_page': 'likeds', 'tags': tags_value}, )
 
 def create_post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             description = request.POST.get('description')
             tags = extract_tags(description)
             post.author = request.user
             post.save()
-
+            file = File(file=form.cleaned_data.get('file_field'), post=post)
+            file.save()
             for tag in tags:
                 try:
                     new_tag = Tag.objects.get(name=tag)
+                    post.post_tags.add(new_tag.pk)
                 except Tag.DoesNotExist:
                     new_tag = Tag(name=tag)
                     new_tag.save()
-            post.post_tags.add(new_tag.pk)
+                    post.post_tags.add(new_tag.pk)
 
             post.save()
             return redirect("/home")
@@ -152,6 +255,18 @@ def sign_up(request):
 
 
 def profileView(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        user = request.user
+        if len(first_name) > 0:
+            user.first_name = first_name
+        if len(last_name) > 0:
+            user.last_name = last_name
+        if len(email) > 0 and not User.objects.filter(email=email).exists():
+            user.email = email
+        user.save()
     return render(request, 'Blogs/profile.html')
 
 
@@ -168,63 +283,44 @@ def get_context_data(self):
 
 def savePost(request):
     user = request.user
+    path = request.POST.get('path')
     if request.method == 'POST':
         if request.POST.get('type') == "0":
             post = user.saveds.get(pk=request.POST.get('pk'))
             user.saveds.remove(post)
         else:
             user.saveds.add(request.POST.get('pk'))
-    return redirect('http://127.0.0.1:8000/home#'+request.POST.get('pk'))
+    return redirect('http://127.0.0.1:8000/'+path+'#'+request.POST.get('pk'))
 
 
 def likePost(request):
     user = request.user
+    path = request.POST.get('path')
     if request.method == 'POST':
         if request.POST.get('type') == "0":
             post = user.likeds.get(pk=request.POST.get('pk'))
             user.likeds.remove(post)
         else:
             user.likeds.add(request.POST.get('pk'))
-    return redirect('http://127.0.0.1:8000/home#'+request.POST.get('pk'))
+    return redirect('http://127.0.0.1:8000/'+path+'#'+request.POST.get('pk'))
 
 
-# def editProfile(request):
-#     if request.method == 'POST':
-#         form = UserEditView(request.POST)
-#         if form.is_valid():
-#             info = form.save(commit=False)
-#             info.save()
-#             return redirect("/profile")
-#     else:
-#         form = UserEditView()
-#     return render(request, 'Blogs/create_post.html', {"form": form})
-
-class editProfile(generic.UpdateView):
-    form_class = UserChangeForm
-    template_name = 'Blogs/editProfile.html'
-    success_url = reverse_lazy('Blogs/profile')
-    def get_object(self):
-        return self.request.user
-
-
-from django.shortcuts import render
-from django.contrib.auth.models import User
-
-
-def edit_profile(request):
+def editProfile(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
+        print("cheeeek")
+        print(last_name)
         user = request.user
-        if first_name:
+        if len(first_name) > 0:
             user.first_name = first_name
-        if last_name:
+        if len(last_name) > 0:
             user.last_name = last_name
-        if email and not User.objects.filter(email=email).exists():
+        if len(email) > 0 and not User.objects.filter(email=email).exists():
             user.email = email
         user.save()
-    return render(request, 'profile.html')
+    return render(request, 'Blogs/profile.html')
 
 
 def enterRoomPage(request):
@@ -235,7 +331,13 @@ def room(request, room):
     room_value = Room.objects.get(pk=room)
     if request.user not in room_value.user.all():
         return redirect("/home")
-    return render(request, 'chat/room.html', {'room': room_value})
+    user = request.user
+    friend = user
+    for x in room_value.user.all():
+        if x.pk != user.pk:
+            friend = x
+            break
+    return render(request, 'Blogs/messages.html', {'room': room_value, 'friend': friend})
 
 
 def checkview(request):
@@ -250,7 +352,7 @@ def checkview(request):
     new_room.user.add(request.user.pk)
     new_room.user.add(friend.pk)
     new_room.save()
-    return redirect('/chat/' + str(room.pk))
+    return redirect('/chat/' + str(new_room.pk))
 
 
 def send(request):

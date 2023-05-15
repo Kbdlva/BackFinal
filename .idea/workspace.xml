@@ -4,44 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="a557fdb8-3562-4201-8139-90b7edbdf8fb" name="Changes" comment="" />
-=======
-    <list default="true" id="c2345f5a-41f5-4ae8-a3a1-2b4547876ef3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Blogs/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0002_alter_userprofile_image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0003_alter_post_description.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0004_remove_userprofile_id_alter_userprofile_image_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0005_alter_userprofile_user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0006_room.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/migrations/0007_remove_room_slug_room_created_at_alter_message_chat_and_more.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/Blogs/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/templates/chat/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/templates/chat/room.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blogs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Blogs/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YourBlog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/YourBlog/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-    </list>
->>>>>>> 029887c6a46c7dbd83f84a64dabd4544b753b8ab
+    <list default="true" id="21795045-8c7c-494f-8ae2-d67c0a78bfd3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-<<<<<<< HEAD
-        <option value="CSS File" />
-=======
-        <option value="Python Script" />
->>>>>>> 029887c6a46c7dbd83f84a64dabd4544b753b8ab
       </list>
     </option>
   </component>
@@ -51,7 +26,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2PaRyQvh1IDbQJLJfe8qMxXHFOA" />
+  <component name="ProjectId" id="2PnGLmv6G5IwxmnSHoBbSGwReKJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -62,64 +37,51 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/user/Desktop/back_end_final/BackFinal",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
+    "last_opened_file_path": "C:/Users/Абзал/Desktop/backend/v2/BackFinal",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JavaScript Debug.main.html">
-    <configuration name="main.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/BackFinal/Blogs/templates/home/main.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="run" type="PythonConfigurationType" factoryName="Python">
-      <module name="YourBlog" />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Абзал\Desktop\backend\v2\BackFinal\Blogs\static\Blogs" />
+      <recent name="C:\Users\Абзал\Desktop\backend\v2\BackFinal\static\images" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BackFinal" type="Python.DjangoServer" factoryName="Django server">
+      <module name="BackFinal" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\user\AppData\Local\Programs\Python\Python311\python.exe" />
-      <option name="SDK_NAME" value="Python 3.11" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-      <option name="PARAMETERS" value="runserver" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript Debug.main.html" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a557fdb8-3562-4201-8139-90b7edbdf8fb" name="Changes" comment="" />
-      <created>1683693459852</created>
+      <changelist id="21795045-8c7c-494f-8ae2-d67c0a78bfd3" name="Changes" comment="" />
+      <created>1684085378789</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1683693459852</updated>
-      <workItem from="1683818515948" duration="42000" />
-      <workItem from="1683818602551" duration="71000" />
-      <workItem from="1683818693613" duration="336000" />
-      <workItem from="1683819052834" duration="9204000" />
-      <workItem from="1683868582121" duration="31843000" />
-      <workItem from="1683951981458" duration="26194000" />
-      <workItem from="1684046123850" duration="1327000" />
+      <updated>1684085378789</updated>
+      <workItem from="1684085379955" duration="19816000" />
     </task>
     <servers />
   </component>
